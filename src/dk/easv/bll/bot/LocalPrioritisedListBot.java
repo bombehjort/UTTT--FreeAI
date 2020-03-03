@@ -22,7 +22,7 @@ public class LocalPrioritisedListBot implements IBot {
      * and if all boards are available for play, it'll run a on the macroboard,
      * to select which board to play in.
      *
-     * @return The selected move we want to make.
+     * @return The selected move we want to make. 
      */
     @Override
     public IMove doMove(IGameState state) {
