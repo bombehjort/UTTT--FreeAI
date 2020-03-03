@@ -48,8 +48,7 @@ public class ChiliBot implements IBot{
             
             if(isWin(state.getField().getBoard(), move, enemy)){
                 return move;
-            }
-            
+            }  
         }
         
         for (int[] move : preferredMoves)
