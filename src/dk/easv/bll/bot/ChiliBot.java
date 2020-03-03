@@ -24,10 +24,18 @@ public class ChiliBot implements IBot{
 
     private String player;
     private String enemy;
+    Random rand = new Random();
+    //why protected?
     protected int[][] preferredMoves = {
-            {1, 1}, //Center
-            {0, 0}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
-            {0, 1}, {2, 1}, {1, 0}, {1, 2}}; //Outer Middles ordered across
+         /*   {0, 0}, //Center
+            {1, 1}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
+            {0, 1}, {2, 1}, {1, 0}, {1, 2}};*/ //Outer Middles ordered across
+         {1, 1}, {2, 2}, {0, 2}, {2, 0},  
+            {1, 1}, {2, 1}, {1, 0}, {1, 2}, 
+            {1, 1}};
+    private String[][] macroBoard;
+   
+
 
 
     @Override
@@ -52,7 +60,7 @@ public class ChiliBot implements IBot{
             
         }
         
-        for (int[] move : preferredMoves)
+       for (int[] move : preferredMoves)
         {
             if(state.getField().getMacroboard()[move[0]][move[1]].equals(IField.AVAILABLE_FIELD))
             {
@@ -68,15 +76,14 @@ public class ChiliBot implements IBot{
                 }
             }
         }
+       
 
         //NOTE: Something failed, just take the first available move I guess!
-        return state.getField().getAvailableMoves().get(0);
+       return state.getField().getAvailableMoves().get(0);
+               
     }
+         
 
-        
-            
-
-    
 
     @Override
     public String getBotName() {
@@ -101,7 +108,7 @@ public class ChiliBot implements IBot{
             }
         }
     }
-    
+   
     
      private static boolean isWin(String[][] board, IMove move, String currentPlayer){
         int localX = move.getX() % 3;
@@ -113,14 +120,18 @@ public class ChiliBot implements IBot{
         for (int i = startY; i < startY + 3; i++) {
             if (!board[move.getX()][i].equals(currentPlayer))
                 break;
-            if (i == startY + 3 - 1) return true;
+            /* I have changed from the outcommented snipppet to the one underneath. I feel like it is making the bot better AGAINST all bots in jeppes program,
+          than monte carlo bots.*/
+        // if (i == startY + 3 - 1) return true;
+          if (i == startY + 1 % 2) return true;
+
         }
 
         //check row
         for (int i = startX; i < startX + 3; i++) {
             if (!board[i][move.getY()].equals(currentPlayer))
                 break;
-            if (i == startX + 3 - 1) return true;
+            if (i == startX + 1 % 2) return true;
         }
 
         //check diagonal
@@ -130,7 +141,7 @@ public class ChiliBot implements IBot{
             for (int i = startX; i < startX + 3; i++) {
                 if (!board[i][y++].equals(currentPlayer))
                     break;
-                if (i == startX + 3 - 1) return true;
+                if (i == startX + 1 % 2) return true;
             }
         }
 
@@ -140,18 +151,18 @@ public class ChiliBot implements IBot{
             for (int i = startX; i < startX + 3; i++) {
                 if (!board[i][(startY + 2)-less++].equals(currentPlayer))
                     break;
-                if (i == startX + 3 - 1) return true;
+                if (i == startX + 1 % 2) return true;
             }
         }
         return false;
     }
-     /*
-     public Boolean isInActiveMicroboard(int x, int y) {
+     
+     /*public Boolean isInActiveMicroboard(int x, int y) {
         int xTrans = x>0 ? x/3 : 0;
         int yTrans = y>0 ? y/3 : 0;
         String value = macroBoard[xTrans][yTrans];
         return value.equals(AVAILABLE_FIELD);
-    }
+    }/*
      public List<IMove> getAvailableMoves(String[][] board) {
         List<IMove> availMoves = new ArrayList<>();
 
