@@ -7,9 +7,9 @@ public class Mogens extends LocalPrioritisedListBot {
     
     public Mogens() {
         int[][] pref = {
-            {1, 1}, {0, 2}, {0, 2}, {2, 0},  
-            {1, 1}, {2, 1}, {1, 0}, {1, 2}, 
-            {1, 1}}; //C
+            {1, 2}, {0, 2}, {0, 2}, {2, 0},  
+            {1, 1}, {1, 1}, {1, 0}, {1, 2}, 
+            {1, 2}}; //C
         super.preferredMoves = pref;
     }
 
