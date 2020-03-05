@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Link to our GUI: https://github.com/bombehjort/UltimateTicTacToe
  */
 package dk.easv.bll.bot;
 
@@ -24,9 +22,10 @@ public class ChiliBot implements IBot{
 
     private String player;
     private String enemy;
-    Random rand = new Random();
+  
     //why protected?
     protected int[][] preferredMoves = {
+
          /*   {0, 0}, //Center
             {1, 1}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
             {0, 1}, {2, 1}, {1, 0}, {1, 2}};*/ //Outer Middles ordered across
@@ -38,6 +37,23 @@ public class ChiliBot implements IBot{
             
           
     private String[][] macroBoard;
+
+        
+            //Center
+        {1, 1}, {1, 1}, {0, 2}, {0, 2}, {2, 0},  //Corners ordered across
+            {1, 1}, {2, 1}, {1, 0}, {1, 2},
+            {0, 1}, {2, 2}}; //Outer Middles ordered across
+  
+    
+    /*{0, 0}, {1, 1}, {2, 2}, {0, 2}, {2, 0}, 
+            {1, 1}, {2, 1}, {1, 0}, {1, 2},
+            {1, 1}};*/
+    
+       /* {1, 1}, {0, 2}, {2, 2}, {2, 0},  
+            {0, 1}, {2, 1}, {1, 0}, {1, 2}, 
+            {1, 1}};*/
+   // private String[][] macroBoard;
+
    
 
 
@@ -50,7 +66,7 @@ public class ChiliBot implements IBot{
         List<IMove> avail = state.getField().getAvailableMoves();
         for (IMove move : avail) {
             
-            if(isWin(state.getField().getBoard(), move, player)){
+            if(isWin(state.getField().getBoard(), move, enemy)){
                 return move;
             }
             
@@ -58,7 +74,7 @@ public class ChiliBot implements IBot{
         
         for (IMove move : avail) {
             
-            if(isWin(state.getField().getBoard(), move, enemy)){
+            if(isWin(state.getField().getBoard(), move, player)){
                 return move;
             }
             
