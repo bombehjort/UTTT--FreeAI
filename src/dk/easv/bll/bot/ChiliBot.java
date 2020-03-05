@@ -4,15 +4,10 @@ Link to our GUI: https://github.com/bombehjort/UltimateTicTacToe
 package dk.easv.bll.bot;
 
 import dk.easv.bll.field.IField;
-import static dk.easv.bll.field.IField.AVAILABLE_FIELD;
-import static dk.easv.bll.field.IField.EMPTY_FIELD;
 import dk.easv.bll.game.IGameState;
 import dk.easv.bll.move.IMove;
 import dk.easv.bll.move.Move;
-import dk.easv.gui.BoardModel;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -26,10 +21,6 @@ public class ChiliBot implements IBot{
     //why protected?
     protected int[][] preferredMoves = {
 
-         /*   {0, 0}, //Center
-            {1, 1}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
-            {0, 1}, {2, 1}, {1, 0}, {1, 2}};*/ //Outer Middles ordered across
-         
         
         {0, 0}, {0, 1}, {0, 2}, {1,0},{1,1},{1,2},{2, 0}, {2,1}, {2,2},
         {1, 0}, {1, 1}, {1, 2},{2, 0},{2,1},{0, 0}, {0, 1}, {0, 2},
@@ -37,26 +28,6 @@ public class ChiliBot implements IBot{
             
           
     private String[][] macroBoard;
-
-      /*  
-            //Center
-        {1, 1}, {1, 1}, {0, 2}, {0, 2}, {2, 0},  //Corners ordered across
-            {1, 1}, {2, 1}, {1, 0}, {1, 2},
-            {0, 1}, {2, 2}}; //Outer Middles ordered across
-  
-    
-    /*{0, 0}, {1, 1}, {2, 2}, {0, 2}, {2, 0}, 
-            {1, 1}, {2, 1}, {1, 0}, {1, 2},
-            {1, 1}};*/
-    
-       /* {1, 1}, {0, 2}, {2, 2}, {2, 0},  
-            {0, 1}, {2, 1}, {1, 0}, {1, 2}, 
-            {1, 1}};*/
-   // private String[][] macroBoard;
-
-   
-
-
 
     @Override
     public IMove doMove(IGameState state) {
@@ -177,22 +148,4 @@ public class ChiliBot implements IBot{
         return false;
     }
      
-     /*public Boolean isInActiveMicroboard(int x, int y) {
-        int xTrans = x>0 ? x/3 : 0;
-        int yTrans = y>0 ? y/3 : 0;
-        String value = macroBoard[xTrans][yTrans];
-        return value.equals(AVAILABLE_FIELD);
-    }/*
-     public List<IMove> getAvailableMoves(String[][] board) {
-        List<IMove> availMoves = new ArrayList<>();
-
-        for (int i = 0; i < board.length; i++)
-            for (int k = 0; k < board[i].length; k++) {
-                if(isInActiveMicroboard(i,k) && board[i][k].equals(EMPTY_FIELD)) {
-                    availMoves.add(new Move(i,k));
-                }
-        }
-
-        return availMoves;
-    }*/
 }
